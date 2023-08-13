@@ -58,6 +58,7 @@
  document.getElementById('clearButton').addEventListener('click', function() {
         const inputText = document.getElementById('inputText').value;
         let cleanedText = inputText.replace(/ +\n+/g, ' ');
+        cleanedText = inputText.replace(/\n+ +/g, ' ');
         cleanedText = inputText.replace(/\n/g, ' ');
         document.getElementById('inputText').value = cleanedText;
     });
