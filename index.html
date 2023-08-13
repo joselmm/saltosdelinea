@@ -47,6 +47,7 @@
     <label for="charLimit">Longitud del Salto de Línea:</label>
     <input type="number" id="charLimit" value="50" min="1">
     
+    <button id="clearButton">Eliminar Saltos de Línea</button>
     <button id="applyButton">Aplicar Salto de Línea</button>
     
     <label for="outputText">Texto de Salida:</label>
@@ -54,6 +55,12 @@
 </div>
 
 <script>
+ document.getElementById('clearButton').addEventListener('click', function() {
+        const inputText = document.getElementById('inputText').value;
+        const cleanedText = inputText.replace(/\n/g, ' ');
+        document.getElementById('inputText').value = cleanedText;
+    });
+
     document.getElementById('applyButton').addEventListener('click', function() {
         const inputText = document.getElementById('inputText').value;
         const charLimit = parseInt(document.getElementById('charLimit').value, 10);
