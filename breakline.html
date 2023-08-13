@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de Salto de Línea Personalizado | Herramienta SEO</title>
+<meta name="description" content="Genera saltos de línea personalizados en tu texto. Optimiza tu contenido con nuestra herramienta SEO para mejorar el formato y la legibilidad.">
+<meta name="keywords" content="generador de salto de línea, herramienta SEO, optimización de contenido, legibilidad, formato de texto">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    textarea {
+        width: 100%;
+        height: 150px;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+    input[type="number"] {
+        width: 50px;
+    }
+    button {
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Salto de Línea Personalizado</h2>
+    <label for="inputText">Texto de Entrada:</label>
+    <textarea id="inputText" placeholder="Ingrese el texto de entrada..."></textarea>
+    
+    <label for="charLimit">Longitud del Salto de Línea:</label>
+    <input type="number" id="charLimit" value="50" min="1">
+    
+    <button id="applyButton">Aplicar Salto de Línea</button>
+    
+    <label for="outputText">Texto de Salida:</label>
+    <textarea id="outputText" placeholder="Texto de salida..." readonly></textarea>
+</div>
+
+<script>
+    document.getElementById('applyButton').addEventListener('click', function() {
+        const inputText = document.getElementById('inputText').value;
+        const charLimit = parseInt(document.getElementById('charLimit').value, 10);
+        
+        let outputText = '';
+        let currentLine = '';
+        
+        const words = inputText.split(' ');
+        
+        for (const word of words) {
+            if ((currentLine + ' ' + word).length <= charLimit) {
+                currentLine += (currentLine === '' ? '' : ' ') + word;
+            } else {
+                outputText += (outputText === '' ? '' : '\n') + currentLine;
+                currentLine = word;
+            }
+        }
+        
+        if (currentLine !== '') {
+            outputText += (outputText === '' ? '' : '\n') + currentLine;
+        }
+        
+        document.getElementById('outputText').value = outputText;
+    });
+</script>
+</body>
+</html>
